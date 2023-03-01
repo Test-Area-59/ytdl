@@ -14,7 +14,7 @@ const fs = require("fs");
 require("dotenv").config();
 
 // Replace YOUR_BOT_TOKEN with your actual bot token
-const token = process.env.B;
+const token = "6144844939:AAHgT47ftvoZtyIiry-Dy2Mg1exwrfCEzn0";
 
 // Create a bot instance
 const bot = new TelegramBot(token, { polling: true });
