@@ -36,7 +36,7 @@ async function downloadVideo(chatId, url) {
     );
 
     // Create a writable stream to store the video file
-    const writeStream = fs.createWriteStream(`${title}-${chatId}.mp4`);
+    const writeStream = fs.createWriteStream(`${chatId}.mp4`);
 
     // Start the download and pipe the video data to the writable stream
     ytdl(url, { filter: "audioandvideo" }).pipe(writeStream);
@@ -59,7 +59,7 @@ async function downloadVideo(chatId, url) {
     writeStream.on("finish", () => {
       clearInterval(updateInterval); // stop updating the message
       bot
-        .sendVideo(chatId, `${title}-${chatId}.mp4`, {
+        .sendVideo(chatId, `${chatId}.mp4`, {
           caption: `*Video downloaded:* ${title} "by" @nxtbots 🏯`,
           thumb: thumbnailUrl,
           duration: videoInfo.videoDetails.lengthSeconds,
@@ -67,7 +67,7 @@ async function downloadVideo(chatId, url) {
         })
 
         .then(() => {
-          fs.unlinkSync(`${title}-${chatId}.mp4`); // delete the file
+          fs.unlinkSync(`${chatId}.mp4`); // delete the file
         })
         .catch((error) => {
           bot.sendMessage(chatId, "Error sending video.");
