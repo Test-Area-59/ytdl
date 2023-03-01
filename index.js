@@ -59,7 +59,7 @@ async function downloadVideo(chatId, url) {
     writeStream.on("finish", () => {
       clearInterval(updateInterval); // stop updating the message
       bot
-        .sendVideo(chatId, `${title}-${chatId}@nxtbots.mp4`, {
+        .sendVideo(chatId, `${title}-${chatId}.mp4`, {
           caption: `*Video downloaded:* ${title} "by" @nxtbots 🏯`,
           thumb: thumbnailUrl,
           duration: videoInfo.videoDetails.lengthSeconds,
@@ -67,7 +67,7 @@ async function downloadVideo(chatId, url) {
         })
 
         .then(() => {
-          fs.unlinkSync(`${title}-${chatId}@nxtbots.mp4`); // delete the file
+          fs.unlinkSync(`${title}-${chatId}.mp4`); // delete the file
         })
         .catch((error) => {
           bot.sendMessage(chatId, "Error sending video.");
